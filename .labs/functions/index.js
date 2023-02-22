@@ -29,6 +29,7 @@ app.use(
 const db = require("./models");
 const Role = db.role;
 
+/*
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}/${dbConfig.DB}`, {
     useNewUrlParser: true,
@@ -42,7 +43,7 @@ db.mongoose
     console.error("Connection error", err);
     process.exit();
   });
-
+*/
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome." });
