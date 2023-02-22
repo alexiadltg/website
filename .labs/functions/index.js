@@ -7,7 +7,7 @@ require('dotenv').config()
 const app = express();
 
 var corsOptions = {
-  origin: "http://0.0.0.0:7378"
+  origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378"
 };
 
 app.use(cors(corsOptions));
