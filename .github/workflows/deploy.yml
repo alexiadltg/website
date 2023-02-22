@@ -43,5 +43,6 @@ jobs:
             cd ${{ secrets.REMOTE_TARGET_SERVER }}
             git pull -r
             npm install
+            killall screen
             screen -S server -dm node .labs/functions/index.js
 

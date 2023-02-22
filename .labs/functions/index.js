@@ -46,7 +46,7 @@ db.mongoose
 */
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome." });
+  res.json({ message: "Welcome Test Test." });
 });
 
 // routes
