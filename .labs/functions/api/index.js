@@ -45,8 +45,8 @@ db.mongoose
   });
 */
 // simple route
-app.get("/api", (req, res) => {
-  res.json({ message: "Welcome Test Test." });
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome Test Test Test dsldnmadasdnsad." });
 });
 
 // routes
