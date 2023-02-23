@@ -1,5 +1,3 @@
-
-
 module.exports = {
-    secret:"SecretAuthKey"
-  };
+  secret: "SecretAuthKey",
+};
