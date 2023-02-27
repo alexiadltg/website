@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "127.0.0.1",
-  PORT: 27017,
-  DB: "test",
+  HOST: "labs.inspedralbes.cat",
+  PORT: 7010,
+  DB: "DAMA_Grup7",
 };

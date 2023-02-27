@@ -20,7 +20,7 @@
           </v-card-text>
         </v-card-text>
         <v-card-actions class="d-flex justify-center">
-            <v-btn>Login</v-btn>
+            <v-btn @click="login" >Login</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -29,10 +29,7 @@
         New user?    
         <router-link to="/signup">SignUp</router-link>
         </p>
-     
-
     </div>
-  
       <v-snackbar :timeout="3000" v-model="snackbar">
         <label color="red">ERROR:</label>{{ text }}
         <template v-slot:actions>
@@ -42,8 +39,37 @@
     </div>
   </template>
   
-  <script setup>
-  //
+  <script >
+  import axios from 'axios'
+  export default{
+      name:'LogIn',
+      data(){
+          return{
+              name:'',
+              email:'',
+              error:''
+          }
+      },
+      methods:{
+          login(){
+              let User ={
+                  email: this.email,
+                  password:this.password
+              }
+             axios.post('http://localhost:5000/api/auth/signin',User)
+              .then(res=>{
+                if (res.status === 200){
+                  localStorage.setItem('token',res.data.token)
+                  this.$router.push('/dashboard');
+                }
+              }, err =>{
+                  console.log(err.response)
+              }
+              )
+  
+          }
+      }
+  }
   </script>
   
   <style scoped>

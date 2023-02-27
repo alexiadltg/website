@@ -28,7 +28,6 @@ app.use(
 
 const db = require("./models");
 const Role = db.role;
-
 /*
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}/${dbConfig.DB}`, {
