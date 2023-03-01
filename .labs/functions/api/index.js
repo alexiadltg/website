@@ -7,10 +7,12 @@ require("dotenv").config();
 const app = express();
 
 var corsOptions = {
-  origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378",
+ // origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378",
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+app.use(cors());
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -28,9 +30,9 @@ app.use(
 
 const db = require("./models");
 const Role = db.role;
-/*
+
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}/${dbConfig.DB}`, {
+  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -42,7 +44,7 @@ db.mongoose
     console.error("Connection error", err);
     process.exit();
   });
-*/
+
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome Test Test Test dsldnmadasdnsad." });

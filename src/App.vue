@@ -8,31 +8,26 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn icon>
+        <v-btn icon to="/">
           <v-icon>mdi-home</v-icon>
         </v-btn>
 
-        <v-btn icon>
+        <v-btn icon to="/login">
           <v-icon>mdi-account</v-icon>
         </v-btn>
 
-        <v-btn icon>
+        <v-btn icon @click="logOut">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </v-app-bar>
 
       <v-main>
-        <v-container fluid>
-  
-        </v-container>
-      </v-main>
+       </v-main>
     </v-layout>
   </v-card>
-<div>
- 
+
   <router-view />
 
-</div>
 
 </template>
 <script>
