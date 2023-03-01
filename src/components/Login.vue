@@ -31,7 +31,7 @@
         </p>
     </div>
       <v-snackbar :timeout="3000" v-model="snackbar">
-        <label color="red">ERROR:</label>{{ text }}
+        <label color="red">ERROR:</label>{{ message }}
         <template v-slot:actions>
           <v-btn variant="text" @click="snackbar = false"> Close </v-btn>
         </template>
@@ -40,12 +40,11 @@
   </template>
   
   <script >
-  import axios from 'axios'
   export default{
       name:'LogIn',
       data(){
           return{
-            loading: false,
+            snackbar: false,
             message: "",
             username:'',
             password:""
@@ -62,14 +61,17 @@
     }
   },
   methods:{
-    login(user){
-      this.loading = true;
+    login(){
+      let user ={
+        username:this.username,
+        password:this.password
+      }
       this.$store.dispatch("auth/login", user).then(
         () => {
           this.$router.push("/profile");
         },
         (error) => {
-          this.loading = false;
+          this.snackbar = true;
           this.message =
             (error.response &&
               error.response.data &&
