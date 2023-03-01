@@ -1,50 +1,37 @@
 <template> 
-<div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">
-            <font-awesome-icon icon="home" /> Home
-          </router-link>
-        </li>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin Board</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/user" class="nav-link">User</router-link>
-        </li>
-      </div>
+  <v-card max-width="448" class="mx-auto" color="grey-lighten-3">
+    <v-layout>
+      <v-app-bar
+        color="teal-darken-4"
+      >
+        <v-app-bar-title>Deheroes</v-app-bar-title>
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/signup" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
-        </li>
-      </div>
+        <v-spacer></v-spacer>
 
-      <div v-if="currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" />
-            {{ currentUser.username }}
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>
-        </li>
-      </div>
-    </nav>
-<div class="container">
+        <v-btn icon>
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
+      </v-app-bar>
+
+      <v-main>
+        <v-container fluid>
+  
+        </v-container>
+      </v-main>
+    </v-layout>
+  </v-card>
+<div>
+ 
   <router-view />
-</div>
+
 </div>
 
 </template>
