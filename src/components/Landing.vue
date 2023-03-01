@@ -1,15 +1,38 @@
 <template>
-  <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
-
-      <div class="text-body-2 font-weight-light mb-n1">Hello World Test</div>
-      <v-btn color="green" to="/signup" prepend-icon="mdi-arrow-right-top">
-          Dashboard
-        </v-btn>
-    </v-responsive>
-  </v-container>
+  <div class="container">
+    <header class="jumbotron">
+      <h3>{{ content }}</h3>
+      <div>
+        Landing
+      </div>
+    </header>
+  </div>
 </template>
 
-<script setup>
-//
+<script>
+import UserService from "../services/user.service";
+
+export default {
+  name: "Landing",
+  data() {
+    return {
+      content: "",
+    };
+  },
+  mounted() {
+    UserService.getPublicContent().then(
+      (response) => {
+        this.content = response.data;
+      },
+      (error) => {
+        this.content =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
+  },
+};
 </script>

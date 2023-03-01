@@ -13,7 +13,12 @@ import { createApp } from "vue";
 // Plugins
 import { registerPlugins } from "@/plugins";
 
-const app = createApp(App);
+import router from "./router";
+
+import store from "./store";
+const app = createApp(App)
+.use(router)
+.use(store)
 
 registerPlugins(app);
 

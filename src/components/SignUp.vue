@@ -39,34 +39,53 @@
   </template>
 
   <script>
-  import axios from 'axios'
   export default{
     name:'Sign-up',
     data(){
         return{
-            username:'',
-            email:'',
-            password:''
+          successful: false,
+          loading: false,
+          username:'',  
+          email:'',
+          password:'',
+          message: "",
         }
     },
-    methods:{
-        signup(){
-            let newUser ={
-                username:this.username,
-                email: this.email,
-                password:this.password
-            }
-            //change ip
-           axios.post('http://localhost:6869/api/auth/signup',newUser)
-            .then(res=>{
-                console.log(res)
-            }, err =>{
-                console.log(err.response)
-            }
-            )
-        }
+    computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }},
+    mounted() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
     }
-}
+  },
+    methods:{
+        signup(user){
+      this.message = "";
+      this.successful = false;
+      this.loading = true;
+
+      this.$store.dispatch("auth/register", user).then(
+        (data) => {
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+          this.loading = false;
+        }
+      );
+    },
+  },
+};
   </script>
   <style scoped>
 .main {

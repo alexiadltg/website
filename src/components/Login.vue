@@ -5,10 +5,10 @@
           <v-card-text>
             <v-form>
               <v-text-field
-                v-model="email"
+                v-model="username"
                 prepend-icon="mdi-account"
                 label="Login"
-                type="text"
+                type="username"
               ></v-text-field>
               <v-text-field
                 v-model="password"
@@ -45,31 +45,42 @@
       name:'LogIn',
       data(){
           return{
-              name:'',
-              email:'',
-              error:''
+            loading: false,
+            message: "",
+            username:'',
+            password:""
           }
       },
-      methods:{
-          login(){
-              let User ={
-                  email: this.email,
-                  password:this.password
-              }
-             axios.post('http://localhost:5000/api/auth/signin',User)
-              .then(res=>{
-                if (res.status === 200){
-                  localStorage.setItem('token',res.data.token)
-                  this.$router.push('/dashboard');
-                }
-              }, err =>{
-                  console.log(err.response)
-              }
-              )
-  
-          }
-      }
-  }
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+    }
+  },
+  methods:{
+    login(user){
+      this.loading = true;
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+          this.$router.push("/profile");
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+  },
+};
   </script>
   
   <style scoped>
