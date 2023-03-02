@@ -1,22 +1,38 @@
 <template> 
+
   <v-card max-width="448" class="mx-auto" color="grey-lighten-3">
     <v-layout>
       <v-app-bar
         color="teal-darken-4"
       >
-        <v-app-bar-title>Deheroes</v-app-bar-title>
+      <router-link to="/" style="display: inline-block;text-decoration:none;color: white;"  >
+        <v-app-bar-title >Deheroes</v-app-bar-title>
+      </router-link>
 
         <v-spacer></v-spacer>
 
-        <v-btn icon to="/">
+        <router-link   to="/" style="display: inline-block;text-decoration:none;color: white;">
+      <v-btn v-show="isAdmin">Admin </v-btn>
+        </router-link>
+
+      <router-link  to="/" style="display: inline-block;text-decoration:none;color: white;">
+        <v-btn v-show="logged" >User </v-btn>
+      </router-link>
+
+        <router-link to="/" color="white">
+        <v-btn icon >
           <v-icon>mdi-home</v-icon>
         </v-btn>
+      </router-link>
+      
 
-        <v-btn icon to="/login">
+      <router-link to="/login">
+        <v-btn icon color="white">
           <v-icon>mdi-account</v-icon>
         </v-btn>
-
-        <v-btn icon @click="logOut">
+      </router-link>
+      
+        <v-btn icon @click="logOut" >
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </v-app-bar>
@@ -32,7 +48,16 @@
 </template>
 <script>
 export default {
+  data(){
+    return{
+      logged:false,
+      isAdmin:false
+    }
+  },
   computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
     currentUser() {
       return this.$store.state.auth.user;
     },
@@ -42,13 +67,24 @@ export default {
       }
 
       return false;
-    }
-  },
+    }},
+    created() {
+    if (this.loggedIn) {
+     this.logged=true
+      
+    }},
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
+      this.logged=false
     }
+  },
+  watch: {
+  currentUser(newVal, oldVal) {
+    if (newVal) {
+      this.logged = true;
+    } 
   }
-};
+}}
 </script>

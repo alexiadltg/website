@@ -58,6 +58,7 @@
   created() {
     if (this.loggedIn) {
       this.$router.push("/profile");
+      
     }
   },
   methods:{
