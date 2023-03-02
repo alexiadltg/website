@@ -5,7 +5,7 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.session.token;
+  let token = req.headers["x-access-token"];
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -29,7 +29,7 @@ isAdmin = (req, res, next) => {
 
     Role.find(
       {
-        _id: { $in: user.roles },
+        _id: { $in: user.roles }
       },
       (err, roles) => {
         if (err) {
@@ -51,8 +51,10 @@ isAdmin = (req, res, next) => {
   });
 };
 
+
 const authJwt = {
   verifyToken,
   isAdmin,
+  
 };
 module.exports = authJwt;

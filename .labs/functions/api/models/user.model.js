@@ -15,7 +15,14 @@ const User = mongoose.model(
         ref: "Role",
       },
     ],
+    games: [
+      {
+        score: Number,
+        time: Number
+      }
+    ]
   })
 );
+    
 
 module.exports = User;

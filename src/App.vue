@@ -11,11 +11,11 @@
 
         <v-spacer></v-spacer>
 
-        <router-link   to="/" style="display: inline-block;text-decoration:none;color: white;">
+        <router-link   to="/admin" style="display: inline-block;text-decoration:none;color: white;">
       <v-btn v-show="isAdmin">Admin </v-btn>
         </router-link>
 
-      <router-link  to="/" style="display: inline-block;text-decoration:none;color: white;">
+      <router-link  to="/user" style="display: inline-block;text-decoration:none;color: white;">
         <v-btn v-show="logged" >User </v-btn>
       </router-link>
 
