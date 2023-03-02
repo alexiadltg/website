@@ -64,9 +64,9 @@ export default {
     showAdminBoard() {
       if (this.currentUser && this.currentUser['roles']) {
         return this.currentUser['roles'].includes('ROLE_ADMIN');
+       
       }
 
-      return false;
     }},
     created() {
     if (this.loggedIn) {
@@ -78,13 +78,21 @@ export default {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
       this.logged=false
+      this.isAdmin=false
     }
   },
   watch: {
-  currentUser(newVal, oldVal) {
-    if (newVal) {
-      this.logged = true;
-    } 
+    logged(newVal, oldVal) {
+      if (newVal && this.showAdminBoard) {
+        this.isAdmin = true;
+      } 
+    },
+    currentUser(newVal, oldVal) {
+      if (newVal) {
+        this.logged = true;
+
+      } 
+    },
   }
-}}
+}
 </script>
