@@ -19,4 +19,26 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.post('/api/games',[authJwt.verifyToken], async (req, res) => {
+    try {
+      
+      // Create a new game object from the request body
+      const newGame = {
+        score: req.body.score,
+        time: req.body.time,
+      };
+  
+      // Use Mongoose to find the user by their ID and push the new game to their games array
+      const user = await User.findById(decoded.id);
+      user.games.push(newGame);
+      await user.save();
+  
+      // Return the updated games array
+      res.send(user.games);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal server error');
+    }
+  });
 };
