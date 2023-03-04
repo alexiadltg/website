@@ -1,5 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
+const User = require("../models/user.model");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -20,22 +21,21 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-  app.post('/api/games',[authJwt.verifyToken], async (req, res) => {
+  app.post('/api/user/newgame',[authJwt.verifyToken], async (req, res) => {
     try {
       
-      // Create a new game object from the request body
       const newGame = {
         score: req.body.score,
         time: req.body.time,
       };
-  
-      // Use Mongoose to find the user by their ID and push the new game to their games array
-      const user = await User.findById(decoded.id);
+
+      const user = await User.findById(req.body.id);
       user.games.push(newGame);
       await user.save();
   
       // Return the updated games array
-      res.send(user.games);
+      res.status(200).send("Saved score");
+
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal server error');
