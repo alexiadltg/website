@@ -12,10 +12,8 @@ exports.userBoard =  async(req, res) => {
   
   if (games=== null){
     res.status(204).send("no games")
-    console.log( req.body.id+ ": " +"no games")
     return
   }
-  console.log(games)
   res.status(200).send(games);
 
 } catch (error) {

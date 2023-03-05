@@ -1,9 +1,29 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
-  </div>
+  <v-table theme="dark">
+    <thead>
+      <tr>
+        <th class="text-left">
+          Date
+        </th>
+        <th class="text-left">
+          Time
+        </th>
+        <th class="text-left">
+          Score
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="user in listUsers"
+        :key="user._id"
+      >
+      <td>{{ user.timestamp }}</td>
+        <td>{{ user.time }}</td>
+        <td>{{ user.score }}</td>
+      </tr>
+    </tbody>
+  </v-table>
 </template>
 
 <script>
@@ -13,13 +33,14 @@ export default {
   name: "User",
   data() {
     return {
-      content: "",
+      listUsers: [],
     };
   },
   mounted() {
     UserService.getUserBoard().then(
       (response) => {
-        this.content = response.data;
+        console.log(response.data.games)
+        this.listUsers = response.data.games;
       },
       (error) => {
         this.content =
