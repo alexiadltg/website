@@ -17,28 +17,8 @@ module.exports = function(app) {
 
   app.get(
     "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+    [authJwt.verifyToken, authJwt.isAdmin],controller.adminBoard
   );
 
-  app.post('/api/user/newgame',[authJwt.verifyToken], async (req, res) => {
-    try {
-      
-      const newGame = {
-        score: req.body.score,
-        time: req.body.time,
-      };
-
-      const user = await User.findById(req.body.id);
-      user.games.push(newGame);
-      await user.save();
-  
-      // Return the updated games array
-      res.status(200).send("Saved score");
-
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal server error');
-    }
-  });
+  app.post('/api/user/newgame',[authJwt.verifyToken],controller.newGame);
 };
