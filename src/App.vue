@@ -5,6 +5,13 @@
       <v-app-bar
         color="teal-darken-4"
       >
+      <router-link to="/" >
+      <v-toolbar-side-icon>
+            <v-img class="mr-3" src="https://cdn.discordapp.com/attachments/1043076354905747518/1081973326819360878/witch1.png" height="50px" width="50px"> 
+            </v-img>
+     </v-toolbar-side-icon>
+    </router-link>
+     
       <router-link to="/" style="display: inline-block;text-decoration:none;color: white;"  >
         <v-app-bar-title >Deheroes</v-app-bar-title>
       </router-link>
@@ -44,7 +51,7 @@
 
   <router-view />
 
-
+ 
 </template>
 <script>
 export default {
