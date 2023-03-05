@@ -7,7 +7,8 @@ exports.allAccess = (req, res) => {
 
 exports.userBoard =  async(req, res) => { 
   try {
-  const games = await User.findById(req.body.id).select("games")
+    console.log(req.userId)
+  const games = await User.findById(req.userId).select("games")
   
   if (games=== null){
     res.status(204).send("no games")
@@ -34,10 +35,9 @@ exports.newGame = async (req, res) => {
         time: req.body.time,
       };
 
-      const user = await User.findById(req.body.id);
+      const user = await User.findById(req.userId);
       user.games.push(newGame);
       await user.save();
-  
       
       res.status(201).send("Saved score");
 
