@@ -1,11 +1,26 @@
 
+const User = require("../models/user.model");
 
 exports.allAccess = (req, res) => {
   res.status(200).send(" minimalist survival roguelite game");
 };
 
-exports.userBoard =  async(req, res) => {
-  res.status(200).send("user Content.");
+exports.userBoard =  async(req, res) => { 
+  try {
+  const games = await User.findById(req.body.id).select("games")
+  
+  if (games=== null){
+    res.status(204).send("no games")
+    console.log( req.body.id+ ": " +"no games")
+    return
+  }
+  console.log(games)
+  res.status(200).send(games);
+
+} catch (error) {
+  console.error(error);
+  res.status(500).send('Internal server error');
+}
   };
 
 exports.adminBoard = async (req, res) => {
@@ -23,7 +38,7 @@ exports.newGame = async (req, res) => {
       user.games.push(newGame);
       await user.save();
   
-      // Return the updated games array
+      
       res.status(201).send("Saved score");
 
     } catch (error) {

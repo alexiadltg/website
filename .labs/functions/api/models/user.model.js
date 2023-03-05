@@ -18,7 +18,11 @@ const User = mongoose.model(
     games: [
       {
         score: Number,
-        time: Number
+        time: Number,
+        timestamp: {
+          type: Date,
+          default: Date.now
+        }
       }
     ]
   })

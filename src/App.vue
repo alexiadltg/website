@@ -12,21 +12,21 @@
      </v-toolbar-side-icon>
     </router-link>
      
-      <router-link to="/" style="display: inline-block;text-decoration:none;color: white;"  >
+      <router-link to="/" class="icon">
         <v-app-bar-title >Deheroes</v-app-bar-title>
       </router-link>
 
         <v-spacer></v-spacer>
 
-        <router-link   to="/admin" style="display: inline-block;text-decoration:none;color: white;">
+        <router-link   to="/admin"  class="icon">
       <v-btn v-show="isAdmin">Admin </v-btn>
         </router-link>
 
-      <router-link  to="/user" style="display: inline-block;text-decoration:none;color: white;">
+      <router-link  to="/user"  class="icon">
         <v-btn v-show="logged" >User </v-btn>
       </router-link>
 
-        <router-link to="/" color="white">
+        <router-link to="/" class="icon">
         <v-btn icon >
           <v-icon>mdi-home</v-icon>
         </v-btn>
@@ -103,3 +103,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.icon {
+  display: inline-block;text-decoration:none;color: white;
+}
+</style>
