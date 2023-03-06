@@ -4,15 +4,29 @@ const User = mongoose.model(
   "User",
   new mongoose.Schema({
     username: String,
-    email: String,
+    email: {
+      type: String,
+      unique: true
+    },
     password: String,
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
+        ref: "Role",
+      },
+    ],
+    games: [
+      {
+        score: Number,
+        time: Number,
+        timestamp: {
+          type: Date,
+          default: Date.now
+        }
       }
     ]
   })
 );
+    
 
 module.exports = User;
