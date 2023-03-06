@@ -6,12 +6,11 @@ require("dotenv").config();
 const app = express();
 
 var corsOptions = {
- // origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378",
+  // origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378",
 };
 
 //app.use(cors(corsOptions));
 app.use(cors());
-
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -30,18 +29,20 @@ app.use(
 const db = require("./models");
 const Role = db.role;
 
-db.mongoose 
+db.mongoose
 
-.connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`, {
-    
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(
+    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Connection error", err);
     process.exit();
   });
