@@ -18,7 +18,7 @@
         v-for="user in listUsers"
         :key="user._id"
       >
-      <td>{{ user.timestamp }}</td>
+      <td>{{ formatDate(user.timestamp)  }}</td>
         <td>{{ user.time }}</td>
         <td>{{ user.score }}</td>
       </tr>
@@ -28,6 +28,8 @@
 
 <script>
 import UserService from "../services/user.service";
+import moment from "moment"
+
 
 export default {
   name: "User",
@@ -51,6 +53,11 @@ export default {
           error.toString();
       }
     );
-  },
+  }, methods: {
+    formatDate(timestamp) {
+      return moment(timestamp).format('DD/MM/YYYY, HH:mm:ss ');
+    }
+  }
 };
+
 </script>
