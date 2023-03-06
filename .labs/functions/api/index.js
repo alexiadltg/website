@@ -32,10 +32,12 @@ const Role = db.role;
 db.mongoose
 
   .connect(
-    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`,
+    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      dbName:"DAMA_Grup7",
+      authSource: "DAMA_Grup7"
     }
   )
   .then(() => {
