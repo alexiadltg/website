@@ -7,7 +7,7 @@
       >
       <router-link to="/" >
       <v-toolbar-side-icon>
-            <v-img class="mr-3" src="https://cdn.discordapp.com/attachments/1043076354905747518/1081973326819360878/witch1.png" height="50px" width="50px"> 
+            <v-img class="mr-3" src="http://cdn.discordapp.com/attachments/1043076354905747518/1081973326819360878/witch1.png" height="50px" width="50px"> 
             </v-img>
      </v-toolbar-side-icon>
     </router-link>
