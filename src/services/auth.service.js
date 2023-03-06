@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_URL =
-  process.env.API_URL + "/auth" || "http://127.0.0.1:6869/api/auth/";
+const API_URL = `http://${window.location.hostname}:7378/api/auth/`;
 
 class AuthService {
   login(user) {

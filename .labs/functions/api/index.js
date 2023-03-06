@@ -57,7 +57,7 @@ require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.API_PORT || 6869;
+const PORT = process.env.API_PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
