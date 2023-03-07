@@ -1,48 +1,50 @@
 <template>
-  <v-table theme="dark">
-    <thead>
+ 
+  <v-data-table
+      v-model:items-per-page="itemsPerPage"
+      :headers="headers"
+      :items="listGames"
+      item-value="timestamp"
+      class="elevation-1"
+    >
+    <template v-slot:item="{ item }">
       <tr>
-        <th class="text-left">
-          Date
-        </th>
-        <th class="text-left">
-          Time
-        </th>
-        <th class="text-left">
-          Score
-        </th>
+        <td>{{ formatDate( item.columns.timestamp) }}</td>
+        <td>{{ item.columns.score }}</td>
+        <td>{{ item.columns.time }}</td>
       </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="user in listUsers"
-        :key="user._id"
-      >
-      <td>{{ formatDate(user.timestamp)  }}</td>
-        <td>{{ user.time }}</td>
-        <td>{{ user.score }}</td>
-      </tr>
-    </tbody>
-  </v-table>
+    </template>
+  </v-data-table>
+    
 </template>
 
 <script>
 import UserService from "../services/user.service";
 import moment from "moment"
 
-
 export default {
-  name: "User",
+ 
   data() {
     return {
-      listUsers: [],
+      listGames: [],
+      itemsPerPage:5,
+      headers:[
+        {
+          title:'Date',
+          align: 'start',
+          sortable: false,
+          key: 'timestamp'
+        },
+        { title: 'Score', align: 'start', key: 'score' },
+        { title: 'Time', align: 'start', key: 'time' },
+      ]
     };
   },
   mounted() {
     UserService.getUserBoard().then(
       (response) => {
         console.log(response.data.games)
-        this.listUsers = response.data.games;
+        this.listGames = response.data.games;
       },
       (error) => {
         this.content =
