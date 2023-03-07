@@ -1,6 +1,8 @@
 
 const User = require("../models/user.model");
-const Config = require("../models/gameConfig.model")
+const db = require("../models");
+const gameConfig = db.gameConfig;
+
 
 
 exports.allAccess = (req, res) => {
@@ -52,12 +54,38 @@ exports.newGame = async (req, res) => {
     res.status(200).send("admin Content.");
   }
 
-  exports.newConfig = async(req,res)=>{
-    try{
-      const hola = Config.find
-    }catch(error){
+exports.newConfig = (req, res) => {
+  const inGameConfig = new gameConfig({
+    witch:[{
+      hp:req.body.witch.hp ,
+      speed: req.body.witch.speed
+    }],
+    rogue:[{
+      hp:req.body.rogue.hp ,
+      speed: req.body.rogue.speed
+    }], 
+    mob:[{
+      hp:req.body.mob.hp ,
+      speed: req.body.mob.speed ,
+      points:req.body.mob.points
+    }],
+    mobBoss:[{
+      hp:req.body.mobBoss.hp ,
+      speed: req.body.mobBoss.speed ,
+      points:req.body.mobBoss.points
+    }]
+  })
 
+
+  inGameConfig.save((err) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
     }
+    res.send({ message: "new Game Config " });
+
+  });
+};
 
 
-  }
+  

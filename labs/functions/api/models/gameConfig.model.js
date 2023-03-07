@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const gameConfig = mongoose.model(
     "gameConfig",
     new mongoose.Schema({
-      hero:[{
+      witch:[{
+        hp:Number,
+        speed:Number
+      }],
+      rogue:[{
         hp:Number,
         speed:Number
       }],
