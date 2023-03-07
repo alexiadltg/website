@@ -45,3 +45,8 @@ exports.newGame = async (req, res) => {
     }
   }
 
+  exports.adminBoard = async (req, res) => {
+
+    
+    res.status(200).send("admin Content.");
+  }

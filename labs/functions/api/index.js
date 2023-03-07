@@ -5,10 +5,6 @@ const cookieSession = require("cookie-session");
 require("dotenv").config();
 const app = express();
 
-var corsOptions = {
-  // origin: "http://deheroes-test.alumnes.inspedralbes.cat:7378",
-};
-
 //app.use(cors(corsOptions));
 app.use(cors());
 
@@ -28,6 +24,7 @@ app.use(
 
 const db = require("./models");
 const Role = db.role;
+const gameConfig = db.gameConfig
 
 db.mongoose
 
@@ -58,6 +55,7 @@ app.get("/", (req, res) => {
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
+
 // set port, listen for requests
 const PORT = process.env.API_PORT;
 app.listen(PORT, () => {
@@ -67,6 +65,7 @@ app.listen(PORT, () => {
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
+      
       new Role({
         name: "user",
       }).save((err) => {
@@ -86,6 +85,25 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
+      
+    }
+  });
+
+  gameConfig.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      
+      new gameConfig({
+        name: "gameConfigDefault",
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'gameConfigDefault' to gameConfig collection");
+      });
+      
     }
   });
 }
+
+
