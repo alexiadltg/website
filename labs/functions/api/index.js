@@ -27,7 +27,6 @@ const Role = db.role;
 const gameConfig = db.gameConfig
 
 db.mongoose
-
   .connect(
     `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
     {

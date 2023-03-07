@@ -21,4 +21,5 @@ module.exports = function(app) {
   );
 
   app.post('/api/user/newgame',[authJwt.verifyToken],controller.newGame);
+  //app.post('/api/user/newconfig',[authJwt.verifyToken,authJwt.isAdmin], controller.newConfig)
 };

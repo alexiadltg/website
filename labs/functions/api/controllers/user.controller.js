@@ -1,5 +1,7 @@
 
 const User = require("../models/user.model");
+const Config = require("../models/gameConfig.model")
+
 
 exports.allAccess = (req, res) => {
   res.status(200).send(" minimalist survival roguelite game");
@@ -7,7 +9,6 @@ exports.allAccess = (req, res) => {
 
 exports.userBoard =  async(req, res) => { 
   try {
-    console.log(req.userId)
   const games = await User.findById(req.userId).select("games")
   
   if (games=== null){
@@ -49,4 +50,14 @@ exports.newGame = async (req, res) => {
 
     
     res.status(200).send("admin Content.");
+  }
+
+  exports.newConfig = async(req,res)=>{
+    try{
+      const hola = Config.find
+    }catch(error){
+
+    }
+
+
   }
