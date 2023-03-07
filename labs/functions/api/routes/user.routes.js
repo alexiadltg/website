@@ -11,7 +11,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/public/landing", controller.allAccess);
-  app.get("/api/public/config", controller.allAccess);
+  app.get("/api/public/config", controller.allAccessConfig);
 
   app.get("/api/user/userboard", [authJwt.verifyToken], controller.userBoard);
 

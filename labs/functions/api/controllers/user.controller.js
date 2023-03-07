@@ -9,6 +9,23 @@ exports.allAccess = (req, res) => {
   res.status(200).send(" minimalist survival roguelite game");
 };
 
+exports.allAccessConfig =async (req, res) => {
+  try {
+    const config = await gameConfig.find({})
+    
+    if (config=== null){
+      res.status(204).send("no config")
+      return
+    }
+    res.status(200).send(config);
+  
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+
+};
+
 exports.userBoard =  async(req, res) => { 
   try {
   const games = await User.findById(req.userId).select("games")
