@@ -26,14 +26,15 @@ const db = require("./models");
 const Role = db.role;
 const gameConfig = db.gameConfig
 
+
+
 db.mongoose
   .connect(
-    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
+   `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       dbName: "DAMA_Grup7",
-      authSource: "DAMA_Grup7"
     }
   )
   .then(() => {
@@ -58,7 +59,7 @@ require("./routes/user.routes")(app);
 // set port, listen for requests
 const PORT = process.env.API_PORT;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server API is running on port ${PORT}.`);
 });
 
 function initial() {
@@ -93,6 +94,24 @@ function initial() {
 
       new gameConfig({
         name: "gameConfigDefault",
+        witch: [{
+          hp: 70,
+          speed: 70
+        }],
+        rogue: [{
+          hp: 100,
+          speed: 100
+        }],
+        mob: [{
+          hp: 20,
+          speed: 60,
+          points: 1
+        }],
+        mobBoss: [{
+          hp: 500,
+          speed: 50,
+          points: 50
+        }]  
       }).save((err) => {
         if (err) {
           console.log("error", err);
@@ -102,7 +121,7 @@ function initial() {
       });
 
     }
-  });
-}
+  })
 
+}
 

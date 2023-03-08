@@ -19,7 +19,8 @@ module.exports = function (app) {
     "/api/admin/adminboard",
     [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard
   );
-
+  
+  
   app.post('/api/user/newgame', [authJwt.verifyToken], controller.newGame);
   app.post('/api/admin/newconfig', controller.newConfig)
 };

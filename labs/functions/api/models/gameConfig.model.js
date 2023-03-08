@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const gameConfig = mongoose.model(
   "gameConfig",
   new mongoose.Schema({
+    name: String,
     witch: [{
       hp: Number,
       speed: Number

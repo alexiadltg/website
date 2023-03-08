@@ -71,37 +71,15 @@ exports.adminBoard = async (req, res) => {
   res.status(200).send("admin Content.");
 }
 
-exports.newConfig = (req, res) => {
-  const inGameConfig = new gameConfig({
-    witch: [{
-      hp: req.body.witch.hp,
-      speed: req.body.witch.speed
-    }],
-    rogue: [{
-      hp: req.body.rogue.hp,
-      speed: req.body.rogue.speed
-    }],
-    mob: [{
-      hp: req.body.mob.hp,
-      speed: req.body.mob.speed,
-      points: req.body.mob.points
-    }],
-    mobBoss: [{
-      hp: req.body.mobBoss.hp,
-      speed: req.body.mobBoss.speed,
-      points: req.body.mobBoss.points
-    }]
-  })
-
-
-  inGameConfig.save((err) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
-    res.send({ message: "new Game Config " });
-
-  });
+exports.newConfig = async (req, res) => {
+  const gameConfigData = req.body;
+  const newGameConfig = new gameConfig(gameConfigData);
+  try {
+    const savedGameConfig = await newGameConfig.save();
+    res.status(201).json(savedGameConfig);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
 
