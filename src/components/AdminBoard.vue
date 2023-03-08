@@ -42,7 +42,7 @@
                     label="Email"
                   ></v-text-field>
 
-                  <v-btn color="teal-darken-4" class="mr-4" @click="editUser">
+                  <v-btn color="teal-darken-4" class="mr-4" @click="editUserAdminBoard">
                     Submit
                   </v-btn>
                   <v-btn
@@ -114,44 +114,16 @@ export default {
     }
     ,
     editUserAdminBoard(){
-      UserService.putAdminBoard(this.inputUser._id,this.inputUser)
+      UserService.putAdminBoard(this.inputUser)
       .then(response => {
           console.log(response.data);
-          this.message = 'The tutorial was updated successfully!';
+          this.message = 'The User was updated successfully!';
+          this.closeDialog()
         })
         .catch(e => {
+          this.snackbar = true
           console.log(e);
         });
-    },
-
-    editUser() {
-      if (this.inputUser._id) {
-        fetch("/.netlify/functions/api/user", {
-          method: "PUT",
-          body: JSON.stringify({
-            USER_ID: this.inputUser.USER_ID,
-            username: this.inputUser.username,
-            password: this.inputUser.password,
-            email: this.inputUser.email,
-            roles: this.inputUser.roles,
-            PointTotal: this.inputUser.PointTotal,
-          }),
-          headers: { "Content-Type": "application/json" },
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            if (data.success) {
-              this.closeDialog();
-            } else {
-              this.snackbar = true;
-            }
-          });
-      } else {
-        this.createUser();
-      }
     },
     closeDialog() {
       // reload inputUser
