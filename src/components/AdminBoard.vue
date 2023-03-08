@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     deleteUserAdminBoard(id){
-      UserService.deleteUserAdminBoard(id)
+      UserService.deleteUserAdminBoard(this.inputUser._id)
       .then(response=>{
         return response.json();
       }).then((data)=>{

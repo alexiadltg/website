@@ -17,11 +17,11 @@ class UserService {
   }
 
   putAdminBoard(Inputdata){
-   return  axios.put(API_URL + "admin/putadminboard",{ headers: authHeader() },Inputdata)
+   return  axios.put(API_URL + "admin/updateUser",{ headers: authHeader() },Inputdata)
   }
 
   deleteUserAdminBoard(id){
-    return axios.delete(API_URL +"admin/deleteUserAdminBoard",{headers: authHeader()},id)
+    return axios.delete(API_URL +"admin/deleteUser",{headers: authHeader()},id)
   }
 }
 
