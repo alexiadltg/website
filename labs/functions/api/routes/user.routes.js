@@ -24,6 +24,6 @@ module.exports = function (app) {
   app.post('/api/user/newgame', [authJwt.verifyToken], controller.newGame);
   app.post('/api/admin/newconfig', [authJwt.verifyToken, authJwt.isAdmin],controller.newConfig)
 
-  app.put('/api/admin/updateUser',controller.updateUser)
+  app.put('/api/admin/updateUser',[authJwt.verifyToken, authJwt.isAdmin],controller.updateUser)
   app.delete('/api/admin/deleteUser',[authJwt.verifyToken, authJwt.isAdmin],controller.deleteUser)
 };
