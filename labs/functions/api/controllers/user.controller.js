@@ -9,16 +9,16 @@ exports.allAccess = (req, res) => {
   res.status(200).send(" minimalist survival roguelite game");
 };
 
-exports.allAccessConfig =async (req, res) => {
+exports.allAccessConfig = async (req, res) => {
   try {
     const config = await gameConfig.find({})
-    
-    if (config=== null){
+
+    if (config === null) {
       res.status(204).send("no config")
       return
     }
     res.status(200).send(config);
-  
+
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error');
@@ -26,70 +26,70 @@ exports.allAccessConfig =async (req, res) => {
 
 };
 
-exports.userBoard =  async(req, res) => { 
+exports.userBoard = async (req, res) => {
   try {
-  const games = await User.findById(req.userId).select("games")
-  
-  if (games=== null){
-    res.status(204).send("no games")
-    return
-  }
-  res.status(200).send(games);
+    const games = await User.findById(req.userId).select("games")
 
-} catch (error) {
-  console.error(error);
-  res.status(500).send('Internal server error');
-}
-  };
+    if (games === null) {
+      res.status(204).send("no games")
+      return
+    }
+    res.status(200).send(games);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+};
 
 exports.adminBoard = async (req, res) => {
   res.status(200).send("admin Content.");
 }
 
 exports.newGame = async (req, res) => {
-    try {
-      const newGame = {
-        score: req.body.score,
-        time: req.body.time,
-      };
+  try {
+    const newGame = {
+      score: req.body.score,
+      time: req.body.time,
+    };
 
-      const user = await User.findById(req.userId);
-      user.games.push(newGame);
-      await user.save();
-      
-      res.status(201).send("Saved score");
+    const user = await User.findById(req.userId);
+    user.games.push(newGame);
+    await user.save();
 
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal server error');
-    }
+    res.status(201).send("Saved score");
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
   }
+}
 
-  exports.adminBoard = async (req, res) => {
+exports.adminBoard = async (req, res) => {
 
-    
-    res.status(200).send("admin Content.");
-  }
+
+  res.status(200).send("admin Content.");
+}
 
 exports.newConfig = (req, res) => {
   const inGameConfig = new gameConfig({
-    witch:[{
-      hp:req.body.witch.hp ,
+    witch: [{
+      hp: req.body.witch.hp,
       speed: req.body.witch.speed
     }],
-    rogue:[{
-      hp:req.body.rogue.hp ,
+    rogue: [{
+      hp: req.body.rogue.hp,
       speed: req.body.rogue.speed
-    }], 
-    mob:[{
-      hp:req.body.mob.hp ,
-      speed: req.body.mob.speed ,
-      points:req.body.mob.points
     }],
-    mobBoss:[{
-      hp:req.body.mobBoss.hp ,
-      speed: req.body.mobBoss.speed ,
-      points:req.body.mobBoss.points
+    mob: [{
+      hp: req.body.mob.hp,
+      speed: req.body.mob.speed,
+      points: req.body.mob.points
+    }],
+    mobBoss: [{
+      hp: req.body.mobBoss.hp,
+      speed: req.body.mobBoss.speed,
+      points: req.body.mobBoss.points
     }]
   })
 
@@ -105,4 +105,3 @@ exports.newConfig = (req, res) => {
 };
 
 
-  

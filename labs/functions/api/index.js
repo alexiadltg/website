@@ -32,7 +32,7 @@ db.mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName:"DAMA_Grup7",
+      dbName: "DAMA_Grup7",
       authSource: "DAMA_Grup7"
     }
   )
@@ -64,7 +64,7 @@ app.listen(PORT, () => {
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
-      
+
       new Role({
         name: "user",
       }).save((err) => {
@@ -84,13 +84,13 @@ function initial() {
 
         console.log("added 'admin' to roles collection");
       });
-      
+
     }
   });
 
   gameConfig.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
-      
+
       new gameConfig({
         name: "gameConfigDefault",
       }).save((err) => {
@@ -100,7 +100,7 @@ function initial() {
 
         console.log("added 'gameConfigDefault' to gameConfig collection");
       });
-      
+
     }
   });
 }
