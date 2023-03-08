@@ -112,14 +112,7 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser =(req,res) =>{
-  if (!req.body) {
-    return res.status(400).send({
-      message: "User to update can not be empty!"
-    });
-  }
-
-  const id = req.body._id
-
+  const id = req.body._id;
   User.findByIdAndDelete(id) 
   .then(data => {
     if (!data) {

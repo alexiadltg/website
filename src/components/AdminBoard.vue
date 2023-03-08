@@ -103,13 +103,11 @@ export default {
     );
   },
   methods: {
-    deleteUserAdminBoard(id){
-      UserService.deleteUserAdminBoard(this.inputUser._id)
-      .then(response=>{
-        return response.json();
-      }).then((data)=>{
-        console.log(data);
-        window.location.reload();
+    deleteUserAdminBoard(deleteUserID){
+   UserService.deleteUserAdminBoard(deleteUserID)
+    .then(response=>{
+      console.log(response.data);
+      window.location.reload();
       }).catch(e=>{
         console.log(e)
       })
