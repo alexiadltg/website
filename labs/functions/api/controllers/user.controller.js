@@ -11,7 +11,7 @@ exports.allAccess = (req, res) => {
 
 exports.allAccessConfig = async (req, res) => {
   try {
-    const config = await gameConfig.find({})
+    const config = await gameConfig.find({"name":"gameConfigDefault"})
 
     if (config === null) {
       res.status(204).send("no config")
