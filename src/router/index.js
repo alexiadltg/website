@@ -10,26 +10,26 @@ const routes = [
     path: "/login",
     name: "login",
     component: () => import("@/components/Login.vue"),
-  }, 
+  },
   {
     path: "/signup",
     name: "signup",
     component: () => import("@/components/SignUp.vue"),
   },
   {
-    path:"/profile",
-    name:"profile",
-    component: ()=> import ("@/components/Profile.vue")
+    path: "/profile",
+    name: "profile",
+    component: () => import("@/components/Profile.vue")
   },
   {
     path: "/admin",
     name: "admin",
-    component: ()=> import ("@/components/AdminBoard.vue"),
+    component: () => import("@/components/AdminBoard.vue"),
   },
   {
     path: "/user",
     name: "user",
-    component: ()=> import ("@/components/UserBoard.vue"),
+    component: () => import("@/components/UserBoard.vue"),
   },
 
 ];
