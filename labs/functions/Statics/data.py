@@ -46,8 +46,8 @@ def user_scores():
     plt.axhline(mean_score + std_score, color='g', linestyle='--')
     plt.axhline(mean_score - std_score, color='g', linestyle='--')
 
-    #  plt.savefig("../../public_html/userScore.png")
-    plt.savefig("./Graphic/userScore.png")
+    plt.savefig("../../public_html/userScore.png" )
+    #plt.savefig("./Graphic/userScore.png" )
 
     # return a JSON response with the correlation coefficient
     return jsonify({'correlation': r})

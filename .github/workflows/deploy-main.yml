@@ -44,4 +44,5 @@ jobs:
             git pull -r
             npm install
             killall screen
-            screen -S server -dm node labs/functions/index.js
+            screen -S server -dm node labs/functions/index.js 
+            screen -S pythonServer -dm python3 labs/funtions/Statics/data.py
