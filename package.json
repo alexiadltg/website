@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite | node ./labs/functions/index.js | python3 ./labs/functions/Statics/data.py",
+    "dev": "vite | node ./labs/functions/index.js ",
     "server": "node ./labs/functions/index.js",
     "build": "vite build",
     "preview": "vite preview",
