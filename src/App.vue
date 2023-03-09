@@ -18,7 +18,7 @@
 
         <v-spacer></v-spacer>
 
-        <router-link   to="/admin"  class="icon">
+        <router-link   to="/admin/users"  class="icon">
       <v-btn v-show="isAdmin">Admin </v-btn>
         </router-link>
 
