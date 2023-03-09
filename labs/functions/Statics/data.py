@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-@app.route('/api/user-scores')
+@app.route('/api/admin/userScoresPlot')
 def user_scores():
     # connect to MongoDB
     client = pymongo.MongoClient("a22yanzhayan:Grup7@labs.inspedralbes.cat")
