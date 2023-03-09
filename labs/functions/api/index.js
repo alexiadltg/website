@@ -103,12 +103,12 @@ function initial() {
           hp: 100,
           speed: 100
         }],
-        mob: [{
+        purpleFlame: [{
           hp: 20,
           speed: 60,
           points: 1
         }],
-        mobBoss: [{
+        purpleFlameBoss: [{
           hp: 500,
           speed: 50,
           points: 50
