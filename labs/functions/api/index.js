@@ -35,6 +35,7 @@ db.mongoose
       useNewUrlParser: true,
       useUnifiedTopology: true,
       dbName: "DAMA_Grup7",
+      authSource: "DAMA_Grup7"
     }
   )
   .then(() => {
