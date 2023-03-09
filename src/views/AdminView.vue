@@ -6,8 +6,8 @@
       bg-color="primary"
     >
       <v-tab value="one">Users</v-tab>
-      <v-tab value="two">Item Two</v-tab>
-      <v-tab value="three">Item Three</v-tab>
+      <v-tab value="two">Settings</v-tab>
+      <v-tab value="three">Statistics</v-tab>
     </v-tabs>
 
     <v-card-text>
@@ -17,11 +17,11 @@
         </v-window-item>
 
         <v-window-item value="two">
-          Two
+          Settings
         </v-window-item>
 
         <v-window-item value="three">
-          Three
+            Statistics
         </v-window-item>
       </v-window>
     </v-card-text>
