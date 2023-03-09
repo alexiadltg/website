@@ -30,8 +30,7 @@ const gameConfig = db.gameConfig
 
 db.mongoose
   .connect(
-   //`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
-   "mongodb://127.0.0.1:27017",
+   `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
