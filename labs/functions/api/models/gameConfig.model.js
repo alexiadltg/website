@@ -12,12 +12,12 @@ const gameConfig = mongoose.model(
       hp: Number,
       speed: Number
     }],
-    mob: [{
+    purpleFlame: [{
       hp: Number,
       speed: Number,
       points: Number
     }],
-    mobBoss: [{
+    purpleFlameBoss: [{
       hp: Number,
       speed: Number,
       points: Number
