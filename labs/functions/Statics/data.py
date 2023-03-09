@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/api/user-scores')
 def user_scores():
     # connect to MongoDB
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    client = pymongo.MongoClient("a22yanzhayan:Grup7@labs.inspedralbes.cat")
     db = client["DAMA_Grup7"]
     collection = db["users"]
 
@@ -53,4 +53,5 @@ def user_scores():
     return jsonify({'correlation': r})
 
 if __name__ == '__main__':
-    app.run()
+   app.run( port=7380)
+

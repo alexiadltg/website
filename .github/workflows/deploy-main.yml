@@ -45,4 +45,4 @@ jobs:
             npm install
             killall screen
             screen -S server -dm node labs/functions/index.js 
-            screen -S pythonServer -dm python3 labs/funtions/Statics/data.py
+            screen -S pythonServer -dm bash -c 'pip install -r requirements.txt && python3 labs/functions/Statics/data.py'
