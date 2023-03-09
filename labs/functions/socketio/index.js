@@ -2,7 +2,6 @@ const server = require("http").Server(require("express"));
 const io = require("socket.io")(server);
 const port = process.env.WEBRTC_PORT;
 var players = [];
-var mobs = [];
 
 server.listen(port, () => {
   console.log(`Server running at ${port}`);
@@ -23,13 +22,25 @@ io.on('connection', function (socket) {
       if (player.id == data.id) {
         player.x = data.x;
         player.y = data.y;
+        player.hp = data.hp;
       }
     })
   });
 
+  socket.on('mobMoved', function (data) {
+    socket.broadcast.emit('mobMoved', data);
+  });
+
   socket.on('updateMobs', function (data) {
-    mobs = data;
-    socket.broadcast.emit('getMobs', mobs);
+    socket.broadcast.emit('getMobs', data);
+  });
+
+  socket.on('awakeMob', function (data) {
+    socket.broadcast.emit('awakeMob', data);
+  });
+
+  socket.on('updateSpells', function (data) {
+    socket.broadcast.emit('getSpells', data);
   });
 
   socket.on('disconnect', function () {
@@ -42,11 +53,12 @@ io.on('connection', function (socket) {
 
     }
   });
-  players.push(new player(socket.id, 0, 0));
+  players.push(new player(socket.id, 0, 0, 0));
 });
 
-function player(id, x, y) {
+function player(id, x, y, hp) {
   this.id = id;
   this.x = x;
   this.y = y;
+  this.hp = hp;
 }
