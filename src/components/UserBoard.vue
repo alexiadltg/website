@@ -1,11 +1,12 @@
 <template>
- 
+ <v-sheet class="ma-10 pa-2" color="transparent">
   <v-data-table
       v-model:items-per-page="itemsPerPage"
       :headers="headers"
       :items="listGames"
       item-value="timestamp"
       class="elevation-1"
+
     >
     <template v-slot:item="{ item }">
       <tr>
@@ -15,7 +16,7 @@
       </tr>
     </template>
   </v-data-table>
-    
+</v-sheet>
 </template>
 
 <script>
@@ -27,16 +28,16 @@ export default {
   data() {
     return {
       listGames: [],
-      itemsPerPage:5,
+      itemsPerPage:10,
       headers:[
         {
           title:'Date',
           align: 'start',
-          sortable: false,
-          key: 'timestamp'
+          key: 'timestamp',
+          width: '40%'
         },
-        { title: 'Score', align: 'start', key: 'score' },
-        { title: 'Time', align: 'start', key: 'time' },
+        { title: 'Score', align: 'start', key: 'score', width: '30%' },
+        { title: 'Time', align: 'start', key: 'time' , width: '30%'},
       ]
     };
   },

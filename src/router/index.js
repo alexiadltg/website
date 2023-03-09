@@ -24,7 +24,8 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: () => import("@/components/AdminBoard.vue"),
+    component: () => import("@/views/AdminView.vue"),
+     
   },
   {
     path: "/user",

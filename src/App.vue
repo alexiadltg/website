@@ -44,13 +44,13 @@
         </v-btn>
       </v-app-bar>
 
-      <v-main>
-       </v-main>
+      
+      <v-main/>
+     
     </v-layout>
   </v-card>
-
+  
   <router-view />
-
  
 </template>
 <script>

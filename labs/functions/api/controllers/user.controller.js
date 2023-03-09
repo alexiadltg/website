@@ -43,7 +43,19 @@ exports.userBoard = async (req, res) => {
 };
 
 exports.adminBoard = async (req, res) => {
-  res.status(200).send("admin Content.");
+  try {
+    const Users = await User.find({})
+
+    if (Users === null) {
+      res.status(204).send("no users")
+      return
+    }
+    res.status(200).send(Users);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
 }
 
 exports.newGame = async (req, res) => {
@@ -65,12 +77,6 @@ exports.newGame = async (req, res) => {
   }
 }
 
-exports.adminBoard = async (req, res) => {
-
-
-  res.status(200).send("admin Content.");
-}
-
 exports.newConfig = async (req, res) => {
   const gameConfigData = req.body;
   const newGameConfig = new gameConfig(gameConfigData);
@@ -82,4 +88,47 @@ exports.newConfig = async (req, res) => {
   }
 };
 
+exports.updateUser = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
 
+  const id = req.body.inputData._id;
+
+  User.findByIdAndUpdate(id, req.body.inputData, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update User with id=${id}. Maybe User was not found!`
+        });
+      } else res.status(200).send({ message: "User was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating User with id=" + id
+      });
+    });
+};
+
+exports.deleteUser =(req,res) =>{
+  const id = req.body._id;
+  User.findByIdAndDelete(id) 
+  .then(data => {
+    if (!data) {
+      res.status(404).send({
+        message: `Cannot delete User with id=${id}. Maybe User was not found!`
+      });
+    } else {
+      res.send({
+        message: "User was deleted successfully!"
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Could not delete User with id=" + id
+    });
+  });
+};

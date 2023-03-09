@@ -15,6 +15,14 @@ class UserService {
   getAdminBoard() {
     return axios.get(API_URL + "admin/adminboard", { headers: authHeader() });
   }
+
+  putAdminBoard(inputData){
+    return axios.put(API_URL+"admin/updateUser", { inputData},{ headers:authHeader() });
+  }
+
+  deleteUserAdminBoard(deleteUserID){
+   return axios.delete(API_URL+"admin/deleteUser", { data: { _id: deleteUserID }, headers: authHeader() });
+  }
 }
 
 export default new UserService();
