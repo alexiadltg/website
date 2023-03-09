@@ -1,9 +1,6 @@
 <template>
-  <v-sheet class="ma-10 pa-2" color="transparent">
+ 
   <v-card>
-    <v-toolbar color="teal-darken-4" >
-      <v-toolbar-title>Users</v-toolbar-title>
-    </v-toolbar>
     <v-table>
       <thead>
         <tr>
@@ -72,7 +69,6 @@
       </tbody>
     </v-table>
   </v-card>
-</v-sheet>
 </template>
 
 <script>
