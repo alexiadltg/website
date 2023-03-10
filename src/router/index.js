@@ -30,7 +30,7 @@ const routes = [
   {
     path: "/admin/gameSettings",
     name: "adminGame",
-    component: () => import("@/components/AdminBoard.vue"),
+    component: () => import("@/components/GameSettings.vue"),
      
   },
   {

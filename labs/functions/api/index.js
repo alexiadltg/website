@@ -95,24 +95,24 @@ function initial() {
 
       new gameConfig({
         name: "gameConfigDefault",
-        witch: [{
+        witch: {
           hp: 70,
           speed: 70
-        }],
-        rogue: [{
+        },
+        rogue: {
           hp: 100,
           speed: 100
-        }],
-        purpleFlame: [{
+        },
+        purpleFlame: {
           hp: 20,
           speed: 60,
           points: 1
-        }],
-        purpleFlameBoss: [{
+        },
+        purpleFlameBoss: {
           hp: 500,
           speed: 50,
           points: 50
-        }]  
+        }  
       }).save((err) => {
         if (err) {
           console.log("error", err);

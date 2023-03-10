@@ -23,6 +23,14 @@ class UserService {
   deleteUserAdminBoard(deleteUserID){
    return axios.delete(API_URL+"admin/deleteUser", { data: { _id: deleteUserID }, headers: authHeader() });
   }
+getPublicConfig() {
+  return axios.get(API_URL + "public/config");}
+
+putGameSettings(inputData){
+  return axios.put(API_URL+"admin/updateGameSettings", { inputData},{ headers:authHeader() });
+}
+
+
 }
 
 export default new UserService();

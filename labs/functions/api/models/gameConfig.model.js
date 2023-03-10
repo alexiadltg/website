@@ -4,24 +4,24 @@ const gameConfig = mongoose.model(
   "gameConfig",
   new mongoose.Schema({
     name: String,
-    witch: [{
+    witch: {
       hp: Number,
       speed: Number
-    }],
-    rogue: [{
+    },
+    rogue: {
       hp: Number,
       speed: Number
-    }],
-    purpleFlame: [{
+    },
+    purpleFlame: {
       hp: Number,
       speed: Number,
       points: Number
-    }],
-    purpleFlameBoss: [{
+    },
+    purpleFlameBoss: {
       hp: Number,
       speed: Number,
       points: Number
-    }]
+    }
   })
 );
 

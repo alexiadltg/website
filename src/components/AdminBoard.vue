@@ -103,7 +103,6 @@
 
 <script>
 import UserService from "../services/user.service";
-import AdminBar from "@/components/AdminBar.vue"
 export default {
   data() {
     return {
