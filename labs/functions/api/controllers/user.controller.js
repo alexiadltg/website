@@ -2,6 +2,7 @@
 const User = require("../models/user.model");
 const db = require("../models");
 const gameConfig = db.gameConfig;
+const gameConfigV2 = db.gameConfigV2
 
 
 
@@ -12,6 +13,23 @@ exports.allAccess = (req, res) => {
 exports.allAccessConfig = async (req, res) => {
   try {
     const config = await gameConfig.find({"name":"gameConfigDefault"})
+
+    if (config === null) {
+      res.status(204).send("no config")
+      return
+    }
+    res.status(200).send(config);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+
+};
+
+exports.allAccessConfig2 = async (req, res) => {
+  try {
+    const config = await gameConfigV2.find({})
 
     if (config === null) {
       res.status(204).send("no config")
@@ -108,6 +126,29 @@ exports.updateUser = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: "Error updating User with id=" + id
+      });
+    });
+};
+
+exports.updateConfig = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+  const id = req.body.inputData._id;
+
+  gameConfigV2.findByIdAndUpdate(id, req.body.inputData, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update config with id=${id}. Maybe User was not found!`
+        });
+      } else res.status(200).send({ message: "Config was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Config with id=" + id
       });
     });
 };

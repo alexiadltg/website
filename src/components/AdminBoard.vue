@@ -1,6 +1,35 @@
 <template>
- 
+      <v-layout class="justify-end">
+        <v-card
+          color="teal-darken-4"
+        >
+      
+          <router-link to="/admin/users" class="icon">
+          <v-btn  >
+            Users
+          </v-btn>
+        </router-link>
+        
+        <router-link to="/admin/gameSettings">
+          <v-btn >
+            Game Settings
+          </v-btn>
+        </router-link>
+        
+        <router-link to="/admin/stats">
+          <v-btn >
+            Statistics
+          </v-btn>
+        </router-link>
+
+        </v-card>       
+      </v-layout>
+
+  <v-sheet class="ma-10 pa-2" color="transparent">
   <v-card>
+    <v-toolbar color="teal-darken-4" >
+      <v-toolbar-title>Users</v-toolbar-title>
+    </v-toolbar>
     <v-table>
       <thead>
         <tr>
@@ -69,6 +98,7 @@
       </tbody>
     </v-table>
   </v-card>
+</v-sheet>
 </template>
 
 <script>

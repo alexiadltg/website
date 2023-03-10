@@ -22,9 +22,21 @@ const routes = [
     component: () => import("@/components/Profile.vue")
   },
   {
-    path: "/admin",
+    path: "/admin/users",
     name: "admin",
-    component: () => import("@/views/AdminView.vue"),
+    component: () => import("@/components/AdminBoard.vue"),
+     
+  },
+  {
+    path: "/admin/gameSettings",
+    name: "adminGame",
+    component: () => import("@/components/GameSettings.vue"),
+     
+  },
+  {
+    path: "/admin/stats",
+    name: "adminStats",
+    component: () => import("@/components/Image.vue"),
      
   },
   {
