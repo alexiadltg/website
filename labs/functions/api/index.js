@@ -25,6 +25,7 @@ app.use(
 const db = require("./models");
 const Role = db.role;
 const gameConfig = db.gameConfig
+const gameConfigV2 = db.gameConfigV2
 
 
 
@@ -121,6 +122,61 @@ function initial() {
         console.log("added 'gameConfigDefault' to gameConfig collection");
       });
 
+    }
+  })
+
+  gameConfigV2.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+
+      new gameConfigV2({
+          name:"witch",
+          hp: 70,
+          velocity: 70    
+      }).save((err) => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'witch' to gameConfigV2 collection");
+      });
+
+      new gameConfigV2({
+        name:"rogue",
+        hp: 100,
+        velocity: 100    
+    }).save((err) => {
+      if (err) {
+        console.log("error", err);
+      }
+
+      console.log("added 'rogue' to gameConfigV2 collection");
+    });
+
+    new gameConfigV2({
+      name:"purpleFlame",
+      hp: 20,
+      velocity: 30,
+      points: 1   
+  }).save((err) => {
+    if (err) {
+      console.log("error", err);
+    }
+
+    console.log("added 'purpleFlame' to gameConfigV2 collection");
+  });
+
+  new gameConfigV2({
+    name:"purpleFlameBoss",
+    hp: 100,
+    velocity: 20,
+    points: 50   
+  }).save((err) => {
+  if (err) {
+    console.log("error", err);
+  }
+
+  console.log("added 'purpleFlameBoss' to gameConfigV2 collection");
+});
     }
   })
 

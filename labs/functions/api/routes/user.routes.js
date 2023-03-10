@@ -12,6 +12,7 @@ module.exports = function (app) {
 
   app.get("/api/public/landing", controller.allAccess);
   app.get("/api/public/config", controller.allAccessConfig);
+  app.get("/api/public/config2", controller.allAccessConfig2);
 
   app.get("/api/user/userboard", [authJwt.verifyToken], controller.userBoard);
 
@@ -25,5 +26,7 @@ module.exports = function (app) {
   app.post('/api/admin/newconfig', [authJwt.verifyToken, authJwt.isAdmin],controller.newConfig)
 
   app.put('/api/admin/updateUser',[authJwt.verifyToken, authJwt.isAdmin],controller.updateUser)
+  app.put('/api/admin/updateConfig',[authJwt.verifyToken, authJwt.isAdmin],controller.updateConfig)
+
   app.delete('/api/admin/deleteUser',[authJwt.verifyToken, authJwt.isAdmin],controller.deleteUser)
 };
